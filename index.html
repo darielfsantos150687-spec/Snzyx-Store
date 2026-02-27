@@ -10,9 +10,8 @@
         body { background-color: #080808; color: white; font-family: 'Inter', sans-serif; }
         .neon-text { text-shadow: 0 0 10px #00f2ff, 0 0 20px #00f2ff; }
         .glass-card { background: rgba(15, 15, 15, 0.8); border: 1px solid rgba(0, 242, 255, 0.2); border-radius: 24px; }
-        .btn-buy { background: #22c55e; color: black; font-weight: 900; transition: 0.3s; shadow: 0 4px 15px rgba(34, 197, 94, 0.4); }
+        .btn-buy { background: #22c55e; color: black; font-weight: 900; transition: 0.3s; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4); }
         .btn-buy:hover { background: #16a34a; transform: scale(1.02); }
-        .purple-gradient { background: linear-gradient(135deg, #9333ea 0%, #00f2ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     </style>
 </head>
 <body>
@@ -28,14 +27,13 @@
         
         <div class="text-center space-y-4">
             <h2 class="text-cyan-400 font-bold text-sm tracking-widest uppercase">Método de pago por país:</h2>
-            <select class="w-full bg-black border border-white/10 p-4 rounded-xl text-gray-400 appearance-none">
+            <select class="w-full bg-black border border-white/10 p-4 rounded-xl text-gray-400 appearance-none text-center">
                 <option>-- SELECCIONA TU PAÍS --</option>
                 <option>República Dominicana</option>
                 <option>México</option>
                 <option>Colombia</option>
                 <option>Otros</option>
             </select>
-            <p class="text-xs text-gray-500 italic">Selecciona un país para ver los datos bancarios.</p>
         </div>
 
         <div class="glass-card overflow-hidden border-t-4 border-cyan-500 shadow-[0_0_30px_rgba(0,242,255,0.1)]">
@@ -46,41 +44,54 @@
                     Aimkill, Speed, ESP, Teleport, Ghost Node.
                 </p>
                 
-                <select class="w-full bg-[#111] border border-white/5 p-3 rounded-xl mb-6 text-center font-bold">
-                    <option>1 Día - $3.50</option>
-                    <option>7 Días - $12.00</option>
-                    <option>30 Días - $35.00</option>
+                <select class="w-full bg-[#111] border border-white/5 p-3 rounded-xl mb-6 text-center font-bold text-cyan-400">
+                    <option>1 Día - $3.00</option>
+                    <option>7 Días - $8.00</option>
+                    <option>15 Días - $12.00</option>
+                    <option>30 Días - $17.00</option>
                 </select>
 
                 <a href="https://chat.whatsapp.com/E9cXXfMF9Z7BUiPIi2Hzyz" class="block w-full btn-buy py-4 rounded-2xl uppercase tracking-widest">
-                    Comprar
+                    Comprar Drip
+                </a>
+            </div>
+        </div>
+
+        <div class="glass-card overflow-hidden border-t-4 border-purple-500 shadow-[0_0_30px_rgba(147,51,234,0.1)]">
+            <div class="p-8 text-center">
+                <span class="text-[10px] font-bold tracking-[0.3em] text-gray-400 uppercase">Premium</span>
+                <h3 class="text-4xl font-black mt-2 mb-4 italic">HG CHEATS</h3>
+                <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                    Full Inyectores, Optimización y Comandos.
+                </p>
+                
+                <select class="w-full bg-[#111] border border-white/5 p-3 rounded-xl mb-6 text-center font-bold text-purple-400">
+                    <option>1 Día - $3.00</option>
+                    <option>10 Días - $12.00</option>
+                    <option>30 Días - $17.00</option>
+                </select>
+
+                <a href="https://chat.whatsapp.com/E9cXXfMF9Z7BUiPIi2Hzyz" class="block w-full btn-buy py-4 rounded-2xl uppercase tracking-widest !bg-purple-600 !text-white">
+                    Comprar HG
                 </a>
             </div>
         </div>
 
         <div class="grid grid-cols-1 gap-4">
-            <div class="glass-card p-6 flex justify-between items-center border-l-4 border-purple-600">
+            <div class="glass-card p-6 flex justify-between items-center border-l-4 border-white/20">
                 <div>
                     <h4 class="font-bold text-white uppercase italic">Panel & Auxilios</h4>
                     <p class="text-[10px] text-gray-500">Optimización y Bypass</p>
                 </div>
-                <a href="https://chat.whatsapp.com/E9cXXfMF9Z7BUiPIi2Hzyz" class="bg-purple-600/20 text-purple-400 px-4 py-2 rounded-lg text-xs font-bold border border-purple-600/30">VER</a>
+                <a href="https://chat.whatsapp.com/E9cXXfMF9Z7BUiPIi2Hzyz" class="bg-white/5 text-white px-4 py-2 rounded-lg text-xs font-bold border border-white/10">VER</a>
             </div>
 
             <div class="glass-card p-6 flex justify-between items-center border-l-4 border-cyan-600">
                 <div>
-                    <h4 class="font-bold text-white uppercase italic">Regedits & Drip</h4>
+                    <h4 class="font-bold text-white uppercase italic">Regedits</h4>
                     <p class="text-[10px] text-gray-500">Comandos VIP</p>
                 </div>
                 <a href="https://chat.whatsapp.com/E9cXXfMF9Z7BUiPIi2Hzyz" class="bg-cyan-600/20 text-cyan-400 px-4 py-2 rounded-lg text-xs font-bold border border-cyan-600/30">VER</a>
-            </div>
-
-            <div class="glass-card p-6 flex justify-between items-center border-l-4 border-white/20">
-                <div>
-                    <h4 class="font-bold text-white uppercase italic">HG Cheats</h4>
-                    <p class="text-[10px] text-gray-500">Full Inyectores</p>
-                </div>
-                <a href="https://chat.whatsapp.com/E9cXXfMF9Z7BUiPIi2Hzyz" class="bg-white/5 text-white px-4 py-2 rounded-lg text-xs font-bold border border-white/10">VER</a>
             </div>
         </div>
     </main>
