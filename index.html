@@ -11,6 +11,7 @@
         .glass-card { background: rgba(15, 15, 15, 0.8); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 24px; }
         .btn-buy { background: #22c55e; color: black; font-weight: 900; transition: 0.3s; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4); }
         .btn-buy:hover { transform: scale(1.02); opacity: 0.9; }
+        .payment-tag { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 10px; rounded-xl: 12px; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -19,21 +20,85 @@
         <h1 class="text-3xl font-black italic text-center">
             <span class="text-white">SNZYX</span> <span class="text-cyan-400">STORE</span> <span class="text-purple-500">VIP</span>
         </h1>
-        <p class="text-[10px] text-gray-500 tracking-[0.4em] uppercase mt-1 text-center">Sistema Oficial de Ventas y Distribución</p>
     </nav>
 
     <main class="max-w-lg mx-auto px-6 py-10 space-y-8">
         
         <div class="text-center space-y-4">
-            <h2 class="text-cyan-400 font-bold text-sm tracking-widest uppercase text-center">Método de pago por país:</h2>
-            <select class="w-full bg-black border border-white/10 p-4 rounded-xl text-gray-400 text-center font-bold">
-                <option>-- SELECCIONA TU PAÍS --</option>
-                <option>República Dominicana</option>
-                <option>México</option>
-                <option>Colombia</option>
-                <option>Otros</option>
+            <h2 class="text-cyan-400 font-bold text-sm tracking-widest uppercase text-center">SELECCIONA TU PAÍS (MONEDA):</h2>
+            <select id="countrySelect" onchange="updatePrices()" class="w-full bg-black border border-cyan-500/50 p-4 rounded-xl text-white text-center font-bold outline-none">
+                <option value="USD">🇺🇸 DÓLARES (USD)</option>
+                <option value="DOP">🇩🇴 REP. DOMINICANA (DOP)</option>
+                <option value="MXN">🇲🇽 MÉXICO (MXN)</option>
+                <option value="COP">🇨🇴 COLOMBIA (COP)</option>
             </select>
         </div>
+
+        <div id="catalog" class="space-y-8">
+            </div>
+
+        <div class="glass-card p-8 text-center border-t-4 border-green-500">
+            <h3 class="text-xl font-black mb-6">✅ 𝐌𝐄́𝐓𝐎𝐃𝐎𝐒 𝐃𝐄 𝐏𝐀𝐆𝐎 ✅</h3>
+            <div class="grid grid-cols-1 gap-3">
+                <div class="payment-tag"><i class="fas fa-gem text-cyan-400"></i> 💎 𝐃𝐈𝐀𝐌𝐀𝐍𝐓𝐄𝐒</div>
+                <div class="payment-tag"><i class="fab fa-paypal text-blue-500"></i> 🔥 𝐏𝐀𝐘𝐏𝐀𝐋</div>
+                <div class="payment-tag"><i class="fas fa-user-shield text-yellow-500"></i> 👑 𝐂𝐔𝐄𝐍𝐓𝐀𝐒 𝐅𝐅</div>
+            </div>
+            <p class="text-[10px] text-gray-500 mt-4 uppercase tracking-widest">Consulta detalles en el grupo VIP</p>
+        </div>
+
+    </main>
+
+    <a href="https://chat.whatsapp.com/E9cXXfMF9Z7BUiPIi2Hzyz" class="fixed bottom-6 right-6 bg-[#22c55e] w-14 h-14 rounded-full flex items-center justify-center shadow-lg z-[100]">
+        <i class="fab fa-whatsapp text-black text-2xl"></i>
+    </a>
+
+    <script>
+        // Precios base en USD
+        const products = [
+            { name: "DRIP MOBILE", color: "cyan", desc: "Aimkill, Speed, ESP, Teleport, Ghost Node.", options: { "1 Día": 3, "7 Días": 8, "15 Días": 12, "30 Días": 17 } },
+            { name: "HG CHEATS", color: "purple", desc: "Full Inyectores, Optimización y Comandos.", options: { "1 Día": 3, "10 Días": 12, "30 Días": 17 } },
+            { name: "BR STRIKES", color: "yellow", desc: "Alta Precisión, Bypass y Antiban Seguro.", options: { "1 Día": 3, "7 Días": 7, "15 Días": 12, "30 Días": 16 } }
+        ];
+
+        // Tasas de cambio aproximadas (puedes ajustarlas)
+        const rates = { USD: 1, DOP: 61, MXN: 18, COP: 4000 };
+        const symbols = { USD: "$", DOP: "RD$", MXN: "$", COP: "$" };
+
+        function updatePrices() {
+            const country = document.getElementById('countrySelect').value;
+            const rate = rates[country];
+            const symbol = symbols[country];
+            const container = document.getElementById('catalog');
+            container.innerHTML = "";
+
+            products.forEach(p => {
+                let optionsHtml = "";
+                for (let [label, price] of Object.entries(p.options)) {
+                    let localPrice = (price * rate).toLocaleString();
+                    optionsHtml += `<option>${label} - ${symbol}${localPrice}</option>`;
+                }
+
+                container.innerHTML += `
+                    <div class="glass-card overflow-hidden border-t-4 border-${p.color}-500 shadow-lg">
+                        <div class="p-8 text-center">
+                            <h3 class="text-4xl font-black italic mb-4 text-${p.color}-500">${p.name}</h3>
+                            <p class="text-gray-400 text-sm mb-6">${p.desc}</p>
+                            <select class="w-full bg-[#111] border border-white/5 p-3 rounded-xl mb-6 text-center font-bold text-${p.color}-400">
+                                ${optionsHtml}
+                            </select>
+                            <a href="https://chat.whatsapp.com/E9cXXfMF9Z7BUiPIi2Hzyz" class="block w-full btn-buy py-4 rounded-2xl uppercase tracking-widest ${p.color === 'purple' ? '!bg-purple-600 !text-white' : p.color === 'yellow' ? '!bg-yellow-500' : ''}">Comprar</a>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // Carga inicial
+        updatePrices();
+    </script>
+</body>
+</html>
 
         <div class="glass-card overflow-hidden border-t-4 border-cyan-500 shadow-[0_0_30px_rgba(0,242,255,0.1)]">
             <div class="p-8 text-center">
